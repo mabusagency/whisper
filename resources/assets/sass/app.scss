@@ -1,0 +1,101 @@
+@import url("//hello.myfonts.net/count/3533a8");
+@font-face {font-family: 'Typold';src: url('webfonts/3775D0_0_0.eot');src: url('webfonts/3775D0_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3775D0_0_0.woff2') format('woff2'),url('webfonts/3775D0_0_0.woff') format('woff'),url('webfonts/3775D0_0_0.ttf') format('truetype');}
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+h1, h2, h3, h4 {
+  font-family:'Typold';
+  font-weight:300;
+}
+
+.th-id {
+  width:40px;
+}
+.panel-heading {
+  padding: 12px 21px;
+}
+.panel-heading a.btn {
+  margin-top:-3px;
+}
+.panel-primary {
+  margin-top:40px;
+}
+.btn {
+  -webkit-border-radius:20px;
+  -moz-border-radius:20px;
+  border-radius:20px;
+}
+.btn-danger {
+  background-color: #BC3B4A;
+  border-color: #BC3B4A;
+}
+.btn-danger:hover {
+  background-color: #8e3741;
+  border-color: #8e3741;
+}
+.btn-warning {
+  background-color:#FFC52E;
+  border-color:#FFC52E;
+  color:#243746;
+}
+.btn-warning:hover {
+  background-color:#f5be2f;
+  border-color:#f5be2f;
+  color:#243746;
+}
+.panel-flush .panel-body, .panel-flush .panel-header {
+  padding: 0;
+}
+.panel-default,
+.panel-default > .panel-heading {
+  border-color: white;
+}
+
+.spark-settings-stacked-tabs {
+  border-radius: 4px;
+  font-weight: 300;
+}
+.spark-settings-stacked-tabs a {
+  border-bottom: 1px solid #e4ecf2;
+  border-left: 3px solid transparent;
+  color: #636b6f;
+}
+.spark-settings-stacked-tabs a i {
+  color: #a4aaae;
+  position: relative;
+}
+.spark-settings-stacked-tabs li:last-child a {
+  border-bottom: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.spark-settings-stacked-tabs li.active a {
+  border-left: 3px solid #3097D1;
+}
+.spark-settings-stacked-tabs li a:active,
+.spark-settings-stacked-tabs li a:hover,
+.spark-settings-stacked-tabs li a:link,
+.spark-settings-stacked-tabs li a:visited {
+  background-color: white;
+}
+
+#accordion .panel-heading {
+  padding:8px 15px;
+}
+#accordion .panel-title {
+  font-size: 14px;
+  font-weight:bold;
+  color:#636b6f;
+}
+#accordion .panel-title > a:hover, #accordion .panel-title > a:focus {
+  text-decoration:none;
+}
+#accordion .list-group-item {
+  font-size:12px;
+  padding:6px 15px;
+  background-color:#fafafa;
+}

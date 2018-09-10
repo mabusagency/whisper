@@ -1,0 +1,26 @@
+body {
+    color:#98a0a6;
+}
+.container {
+    margin-top:40px;
+}
+.placeholder {
+    padding:5px;
+    border:1px dashed #98a0a6;
+    text-align: center;
+}
+.form {
+    border:2px solid #d8e1e4;
+    padding:30px 40px;
+    margin-bottom:40px;
+}
+.form-control {
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    -webkit-transition:none;
+    transition:none;
+    color:#83898e;
+}
+.btn-default {
+    color:#83898e;
+}

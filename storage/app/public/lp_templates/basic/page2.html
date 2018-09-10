@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="http://162.243.239.205/js/lp.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="placeholder" style="width:140px;">LOGO</div>
+                    <h1>*|EXTRACURRI|* is awesome!</h1>
+                    <p>
+                        *|IF:EXTRACURRI = Hockey|*
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-oIrF469Y4bZH_AHpPvcft56RcxU8P7mXOaA5HRS8Bc8newGJQ" height="100" />
+                        *|ELSEIF:EXTRACURRI = Football|*
+                        <img src="http://media.gettyimages.com/photos/american-football-picture-id183773561?s=612x612" height="100" />
+                        *|ELSEIF:EXTRACURRI = Soccer|*
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSchjDpYhRhfz-R7N3FH3s4LugHvNBjg2vwFJ_tHUf1EcxbQ5AY" height="100" />
+                        *|END:IF|*
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <div class="form">
+                        <form action="thankyou.html" method="post">
+                            <div class="form-group">
+                                <label for="major">What's your Major?</label>
+                                <select class="form-control" id="major" name="major">
+                                    <option>Nursing</option>
+                                    <option>Biology</option>
+                                    <option>Business</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
