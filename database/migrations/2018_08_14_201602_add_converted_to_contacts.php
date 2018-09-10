@@ -14,7 +14,7 @@ class AddConvertedToContacts extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->binary('converted')->after('status')->index();
+            $table->string('converted',1)->after('status')->index();
         });
     }
 
