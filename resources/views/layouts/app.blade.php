@@ -252,7 +252,7 @@
                 @yield('content')
 
                 @if(View::hasSection('panel-content'))
-                    <div class="panel panel-default panel-primary">
+                    <div class="panel panel-default">
                         @if(View::hasSection('panel-title'))
                             <div class="panel-heading">
                                 @yield('panel-title')
