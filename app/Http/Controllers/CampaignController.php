@@ -97,7 +97,7 @@ class CampaignController extends Controller
         $campaign->name = $request['name'];
         if(!$request['ftp_server']) {
             $campaign->domain = $_SERVER["HTTP_HOST"];
-            $campaign->directory = 'storage/campaigns/'.$directory;
+            $campaign->directory = 'campaigns/'.$directory;
         } else {
             $campaign->directory = $directory;
             $campaign->domain = $request['domain'];
