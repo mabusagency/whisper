@@ -52,10 +52,10 @@ $(document).ready(function() {
     }
     //For production
     else {
-        var purl_tracking_url = 'http://162.243.239.205/api/lp/visitor?purl='+purl+'&campaign='+campaign+'&url='+url+'&path='+path+'&test='+test;
-        var purl_submit_url = 'http://162.243.239.205/api/lp/submit';
-        var purl_track_link_url = 'http://162.243.239.205/api/lp/link';
-        purl_options_url = 'http://162.243.239.205/api/lp/options';
+        var purl_tracking_url = 'http://betterstudentrecruiting.com/api/lp/visitor?purl='+purl+'&campaign='+campaign+'&url='+url+'&path='+path+'&test='+test;
+        var purl_submit_url = 'http://betterstudentrecruiting.com/api/lp/submit';
+        var purl_track_link_url = 'http://betterstudentrecruiting.com/api/lp/link';
+        purl_options_url = 'http://betterstudentrecruiting.com/api/lp/options';
     }
 
     console.log(purl_tracking_url);

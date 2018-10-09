@@ -27,7 +27,7 @@ class CampaignHelper
             $contents = Storage::get($lp_file);
 
             //Update path for local testing
-            $contents = str_replace('http://162.243.239.205','',$contents);
+            $contents = str_replace(env('APP_URL'),'',$contents);
 
             $pathInfo = pathinfo($lp_file);
             $fileName = $pathInfo['basename'];
