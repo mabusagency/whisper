@@ -123,7 +123,7 @@ class DatabaseSeeder extends Seeder
         DB::table('campaigns')->insert([
             'institution_id' => 1,
             'name' => 'Campaign 2017',
-            'directory' => 'campaigns/'.$directory,
+            'directory' => 'storage/campaigns/'.$directory,
             'domain' => 'recruitu:8888',
             'ftp_username' => 'test',
             'ftp_path' => '/',
@@ -135,7 +135,7 @@ class DatabaseSeeder extends Seeder
         DB::table('campaigns')->insert([
             'institution_id' => 1,
             'name' => $directory,
-            'directory' => 'campaigns/'.$directory,
+            'directory' => 'storage/campaigns/'.$directory,
             'domain' => 'recruitu:8888',
             'ftp_username' => 'test',
             'ftp_path' => '/',
