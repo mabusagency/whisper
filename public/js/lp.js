@@ -43,20 +43,10 @@ $(document).ready(function() {
     var url = window.location.href;
     var path = window.location.pathname;
 
-    //For local testing
-    if(document.domain == 'recruitu') {
-        var purl_tracking_url = '/api/lp/visitor?purl='+purl+'&campaign='+campaign+'&url='+url+'&path='+path+'&test='+test;
-        var purl_submit_url = '/api/lp/submit';
-        var purl_track_link_url = '/api/lp/link';
-        purl_options_url = '/api/lp/options';
-    }
-    //For production
-    else {
-        var purl_tracking_url = 'http://betterstudentrecruiting.com/api/lp/visitor?purl='+purl+'&campaign='+campaign+'&url='+url+'&path='+path+'&test='+test;
-        var purl_submit_url = 'http://betterstudentrecruiting.com/api/lp/submit';
-        var purl_track_link_url = 'http://betterstudentrecruiting.com/api/lp/link';
-        purl_options_url = 'http://betterstudentrecruiting.com/api/lp/options';
-    }
+    var purl_tracking_url = 'http://betterstudentrecruiting.com/api/lp/visitor?purl='+purl+'&campaign='+campaign+'&url='+url+'&path='+path+'&test='+test;
+    var purl_submit_url = 'http://betterstudentrecruiting.com/api/lp/submit';
+    var purl_track_link_url = 'http://betterstudentrecruiting.com/api/lp/link';
+    purl_options_url = 'http://betterstudentrecruiting.com/api/lp/options';
 
     console.log(purl_tracking_url);
 

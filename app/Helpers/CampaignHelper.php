@@ -27,7 +27,7 @@ class CampaignHelper
             $contents = Storage::get($lp_file);
 
             //Update path for local testing
-            $contents = str_replace(env('APP_URL'),'',$contents);
+            $contents = str_replace('http://betterstudentrecruiting.com','',$contents);
 
             $pathInfo = pathinfo($lp_file);
             $fileName = $pathInfo['basename'];
