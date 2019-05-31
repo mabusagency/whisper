@@ -285,16 +285,17 @@ class MailChimpHelper
     public function get_or_create_list()
     {
         $lists = $this->mc->get('lists');
+        if($lists) {
+            //See if list already exists for this Campaign
+            foreach ($lists['lists'] as $list) {
+                if ($list['name'] == $this->campaign->name) {
+                    $this->list_id = $list['id'];
 
-        //See if list already exists for this Campaign
-        foreach ($lists['lists'] as $list) {
-            if ($list['name'] == $this->campaign->name) {
-                $this->list_id = $list['id'];
+                    $this->campaign->mailchimp_list_id = $list['id'];
+                    $this->campaign->save();
 
-                $this->campaign->mailchimp_list_id = $list['id'];
-                $this->campaign->save();
-
-                return $list['id'];
+                    return $list['id'];
+                }
             }
         }
 

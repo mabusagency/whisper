@@ -91,16 +91,18 @@ class CampaignController extends Controller
             'name' => 'required|string|max:255|unique:campaigns'
         ]);
 
+        $ch = new CampaignHelper();
+
         //Save campaign
         $campaign = new Campaign();
         $campaign->institution_id = session('institution')->id;
         $campaign->name = $request['name'];
         if(!$request['ftp_server']) {
-            $campaign->domain = $_SERVER["HTTP_HOST"];
+            $campaign->domain = $ch->cleanDomain($_SERVER["HTTP_HOST"]);
             $campaign->directory = 'storage/campaigns/'.$directory;
         } else {
             $campaign->directory = $directory;
-            $campaign->domain = $request['domain'];
+            $campaign->domain = $ch->cleanDomain($request['domain']);
             $campaign->ftp_server = $request['ftp_server'];
             $campaign->ftp_username = $request['ftp_username'];
             $campaign->ftp_path = $request['ftp_path'];
@@ -108,7 +110,6 @@ class CampaignController extends Controller
         }
         $campaign->save();
 
-        $ch = new CampaignHelper();
 
         //Upload LP Files
         $ch->install_lp_files($directory, $campaign, $request['ftp_server'], $request['ftp_username'], $request['ftp_password'], $request['ftp_path'], $directory);

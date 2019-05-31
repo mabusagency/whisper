@@ -87,5 +87,12 @@ RewriteRule ^([A-Za-z0-9_-]+)\.([A-Za-z0-9_-]+)/?$ http://'.$campaign->domain.'/
         return $code;
     }
 
+    public function cleanDomain($domain) {
+        $domain = str_replace('https://','',$domain);
+        $domain = str_replace('http://','',$domain);
+        return $domain;
+    }
+
+
 
 }
