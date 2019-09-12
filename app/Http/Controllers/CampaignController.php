@@ -88,7 +88,7 @@ class CampaignController extends Controller
         $directory = preg_replace("/[^a-zA-Z0-9]/i", "", $request['name']);
 
         $this->validate($request, [
-            'name' => 'required|string|max:255|unique:campaigns'
+            'name' => 'required|string|max:99|unique:campaigns'
         ]);
 
         $ch = new CampaignHelper();
