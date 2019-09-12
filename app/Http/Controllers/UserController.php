@@ -33,11 +33,7 @@ class UserController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        if(bcrypt($request->password) != Auth::user()->password) {
-            return redirect("/settings/profile?error=Current password is not correct");
-        }
-
-        Auth::user()->password = $request->email;
+        Auth::user()->password = bcrypt($request->password);
         Auth::user()->save();
 
         return redirect("/settings/security?message=Password+Updated");

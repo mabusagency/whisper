@@ -180,7 +180,7 @@
         </div>
 
     @elseif (Auth::user() && (Auth::user()->type == 'institution'))
-        <div style="background-color:#86364E;margin-top:-50px;padding-top:20px;">
+        <div style="background-color:#86364E;margin-top:-50px;padding-top:20px;margin-bottom: 30px;">
             <div class="container">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="@if(strstr(Request::path(),'campaign')) active @endif"><a

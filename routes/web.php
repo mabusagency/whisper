@@ -19,10 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'AppController@index');
 
-Route::group(['middleware' => ['auth','admin','check_sessions']], function () {
+Route::put('/user','UserController@update')->name('users.update');
+Route::put('/user/settings','UserController@update_security')->name('users.update.security');
 
-    Route::put('/user','UserController@update')->name('users.update');
-    Route::put('/user/settings','UserController@update_security')->name('users.update.security');
+Route::group(['middleware' => ['auth','admin','check_sessions']], function () {
 
     //Institutions
     Route::resource('/institutions','InstitutionController');
