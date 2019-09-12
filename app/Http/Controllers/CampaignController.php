@@ -93,10 +93,12 @@ class CampaignController extends Controller
 
         $ch = new CampaignHelper();
 
+        $name = preg_replace("/[^A-Za-z0-9 ]/", "", $request['name']);
+
         //Save campaign
         $campaign = new Campaign();
         $campaign->institution_id = session('institution')->id;
-        $campaign->name = $request['name'];
+        $campaign->name = $name;
         if(!$request['ftp_server']) {
             $campaign->domain = $ch->cleanDomain($_SERVER["HTTP_HOST"]);
             $campaign->directory = 'storage/campaigns/'.$directory;
