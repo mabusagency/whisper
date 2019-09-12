@@ -69,7 +69,7 @@ class Student extends Model
         }
 
         if(\Auth::user()->type != 'admin') {
-            $query->where('converted',1);
+            //$query->where('converted',1);
         }
 
         if(\Auth::user()->type == 'staff') {
