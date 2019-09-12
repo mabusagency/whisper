@@ -143,7 +143,8 @@ class StudentsController extends Controller
 
         $this->validate($request, [
             'firstName' => 'required|string|max:255',
-            'lastName' => 'required|string|max:255'
+            'lastName' => 'required|string|max:255',
+            'email' => 'email'
         ]);
 
         if($request['email'] && Student::where('institution_id',session('institution')->id)->where('email',$request['email'])->first()) {
