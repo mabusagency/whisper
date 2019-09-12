@@ -31,7 +31,7 @@
             <tr>
                 <th scope="row">{!! $campaign->id !!}</th>
                 <td style="width:300px;">
-                    <a href="/campaigns/set/{!! $campaign->id !!}">{!! $campaign->name !!}</a>
+                    <a href="/campaigns/set/{!! $campaign->id !!}">{{ $campaign->name }}</a>
                 </td>
                 @if(Auth::user()->type == 'admin')
                     <td>{!! $campaign->students->count() !!}</td>
