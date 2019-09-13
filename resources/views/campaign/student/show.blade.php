@@ -82,6 +82,7 @@
                 </div>
                 <hr/>
 
+                @if($student->notes->count() > 0)
                 <div class="well">
                     <div class="row">
                         <div class="col-md-12">
@@ -102,14 +103,19 @@
 
                             @foreach($student->notes as $note)
                                 <b>{!! $note->created_at->format('m/d/Y') !!}: </b>
-                                {!! $note->content !!} 
+                                {!! $note->content !!}
                                 <br/>
-                                <a href="{!! route('note.delete',[$student->id,$note->id]) !!}">Delete</a>
+                                <a data-toggle="modal" data-target="#{!! $note->id !!}" >
+                                    Delete
+                                </a>
+                                @include('includes/delete-modal', ['id' => $note->id, 'object' => 'Note', 'name' => 'this note', 'uri' => route('note.delete',[$student->id,$note->id])])
+
                                 <hr/>
                             @endforeach
                         </div>
                     </div>
                 </div>
+                @endif
             @endif
 
             <div class="well">

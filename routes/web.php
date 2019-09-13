@@ -64,7 +64,7 @@ Route::group(['middleware' => ['auth','check_sessions']], function () {
     Route::get('/campaign/student/export', 'StudentsController@export')->name('students.export');
     Route::get('/campaign/student/{student_id}/restore', 'StudentsController@restore')->name('student.restore');
 
-    Route::get('/note/delete/{student}/{note}', 'NoteController@destroy')->name('note.delete');
+    Route::delete('/note/delete/{student}/{note}', 'NoteController@destroy')->name('note.delete');
 
 });
 
