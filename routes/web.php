@@ -30,11 +30,6 @@ Route::group(['middleware' => ['auth','admin','check_sessions']], function () {
 
     //Fields
     Route::resource('/fields', 'FieldController');
-
-    //Upload Students
-    Route::post('/campaign/student/upload_preview', 'StudentsController@upload_preview')->name('students.upload.preview');
-    Route::get('/campaign/student/upload_preview', 'StudentsController@upload_preview')->name('students.upload.preview');
-    Route::post('/campaign/student/upload_execute', 'StudentsController@upload_execute')->name('students.upload.execute');
 });
 
 //Managers
@@ -49,6 +44,11 @@ Route::group(['middleware' => ['auth','manager','check_sessions']], function () 
 
     //Staff
     Route::resource('/staff', 'StaffController');
+
+    //Upload Students
+    Route::post('/campaign/student/upload_preview', 'StudentsController@upload_preview')->name('students.upload.preview');
+    Route::get('/campaign/student/upload_preview', 'StudentsController@upload_preview')->name('students.upload.preview');
+    Route::post('/campaign/student/upload_execute', 'StudentsController@upload_execute')->name('students.upload.execute');
 });
 
 //Staff
