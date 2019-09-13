@@ -101,11 +101,11 @@
                             {{--</div>--}}
 
                             @foreach($student->notes as $note)
-                                <hr/>
                                 <b>{!! $note->created_at->format('M d \'y') !!}: </b>
                                 {!! $note->content !!}
                                 <br/>
                                 <a href="{!! route('note.delete',[$student->id,$note->id]) !!}">Delete</a>
+                                <hr/>
                             @endforeach
                         </div>
                     </div>
