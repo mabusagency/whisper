@@ -85,20 +85,20 @@
                 <div class="well">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <label for="note">Notes:</label>
-                                    <textarea class="form-control" id="note" name="note" rows="3"></textarea>
-                                </div>
-                            </div>
+                            {{--<div class="form-group">--}}
+                                {{--<div class="col-md-12">--}}
+                                    {{--<label for="note">Notes:</label>--}}
+                                    {{--<textarea class="form-control" id="note" name="note" rows="3"></textarea>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-warning">
-                                        Save
-                                    </button>
-                                </div>
-                            </div>
+                            {{--<div class="form-group">--}}
+                                {{--<div class="col-md-12">--}}
+                                    {{--<button type="submit" class="btn btn-warning">--}}
+                                        {{--Save--}}
+                                    {{--</button>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
                             @foreach($student->notes as $note)
                                 <hr/>
