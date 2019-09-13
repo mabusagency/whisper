@@ -101,8 +101,8 @@
                             {{--</div>--}}
 
                             @foreach($student->notes as $note)
-                                <b>{!! $note->created_at->format('M d \'y') !!}: </b>
-                                {!! $note->content !!}
+                                <b>{!! $note->created_at->format('m/d/Y') !!}: </b>
+                                {!! $note->content !!} 
                                 <br/>
                                 <a href="{!! route('note.delete',[$student->id,$note->id]) !!}">Delete</a>
                                 <hr/>
