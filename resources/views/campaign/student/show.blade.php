@@ -73,7 +73,7 @@
             <div class="form-group form-check">
                 <div class="col-md-12">
                     <input id="status" value="1" name="status" type="checkbox" class="form-check-input"
-                           @if($student->status == 1)checked="checked"@endif> &nbsp;
+                           @if($student->status == 1)checked="checked"@endif disabled> &nbsp;
                     <label for="status" class="control-label">Contacted</label>
                 </div>
             </div>
