@@ -354,7 +354,7 @@ class StudentsController extends Controller
 
             $student_fields = $sh->get_student_custom_fields($student);
             foreach (Field::where('institution_id',session('institution')->id)->get() as $field) {
-                $row[$field->name] = $student_fields[$field->id];
+                $row['_'.$field->name] = $student_fields[$field->id];
             }
 
             array_push($csv, $row);
