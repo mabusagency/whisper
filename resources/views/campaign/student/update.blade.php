@@ -144,48 +144,44 @@
             </div>
 
             <div class="col-md-4">
+                
+                <div class="form-group form-check">
+                    <div class="col-md-12">
+                        <input id="status" value="1" name="status" type="checkbox" class="form-check-input"
+                               @if($student->status == 1)checked="checked"@endif> &nbsp;
+                        <label for="status" class="control-label">Contacted</label>
+                    </div>
+                </div>
+                <hr/>
 
-
-                @if(Auth::user()->type == 'staff')
-
-                    <div class="form-group form-check">
+                <div class="well">
+                    <div class="row">
                         <div class="col-md-12">
-                            <input id="status" value="1" name="status" type="checkbox" class="form-check-input"
-                                   @if($student->status == 1)checked="checked"@endif> &nbsp;
-                            <label for="status" class="control-label">Contacted</label>
-                        </div>
-                    </div>
-                    <hr/>
-
-                    <div class="well">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <label for="note">Notes:</label>
-                                        <textarea class="form-control" id="note" name="note" rows="3"></textarea>
-                                    </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="note">Notes:</label>
+                                    <textarea class="form-control" id="note" name="note" rows="3"></textarea>
                                 </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <button type="submit" class="btn btn-warning">
-                                            Save
-                                        </button>
-                                    </div>
-                                </div>
-
-                                @foreach($student->notes as $note)
-                                    <hr/>
-                                    <b>{!! $note->created_at->format('m/d/Y') !!}: </b>
-                                    {!! $note->content !!}
-                                    <br/>
-                                    <a href="{!! route('note.delete',[$student->id,$note->id]) !!}">Delete</a>
-                                @endforeach
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-warning">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+
+                            @foreach($student->notes as $note)
+                                <hr/>
+                                <b>{!! $note->created_at->format('m/d/Y') !!}: </b>
+                                {!! $note->content !!}
+                                <br/>
+                                <a href="{!! route('note.delete',[$student->id,$note->id]) !!}">Delete</a>
+                            @endforeach
                         </div>
                     </div>
-                @endif
+                </div>
 
                 <div class="well">
                     <div class="row">
