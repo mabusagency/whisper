@@ -102,9 +102,9 @@
                             <b>{!! $note->created_at->format('m/d/Y') !!}: </b>
                             {!! $note->content !!}
                             <br/>
-                            <a data-toggle="modal" data-target="#{!! $note->id !!}" >
-                                Delete
-                            </a>
+                            {{--<a data-toggle="modal" data-target="#{!! $note->id !!}" >--}}
+                                {{--Delete--}}
+                            {{--</a>--}}
                             @include('includes/delete-modal', ['id' => $note->id, 'object' => 'Note', 'name' => 'this note', 'uri' => route('note.delete',[$student->id,$note->id])])
 
                             <hr/>
