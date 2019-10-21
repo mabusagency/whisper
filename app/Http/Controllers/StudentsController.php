@@ -229,7 +229,7 @@ class StudentsController extends Controller
         $this->validate($request, [
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
+            'email' => 'email',
         ]);
 
         $original_email = $student->email;
