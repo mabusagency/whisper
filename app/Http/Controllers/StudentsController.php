@@ -73,7 +73,7 @@ class StudentsController extends Controller
                 ->get();
         }
 
-        if(\Request::input('page') || \Request::input('notes') || \Request::input('contacted')) {
+        if(\Request::input('page') || \Request::input('notes') || \Request::input('contacted') || \Request::input('deleted')) {
             $message = '<div style="float:right;"><a href="/campaign/students">clear</a></div>'.$students->count().' students ';
         } else {
             if($students->count() < 3 && Auth::user()->type == 'admin') {

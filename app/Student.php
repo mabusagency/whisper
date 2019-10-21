@@ -42,8 +42,13 @@ class Student extends Model
             foreach($pages as $page) {
                 if(substr($page,0,1) == '-') {
                     $page = str_replace('-','',$page);
-                    $query->has('results')
-                        ->whereRaw('students.id not in (select student_id from results where page = "'.$page.'")');
+//                    $query->has('results')
+//                        ->whereRaw('students.id not in (select student_id from results where page = "'.$page.'")');
+
+                    $query->whereDoesntHave('results', function ($query) use($page) {
+                        $query->where('page', $page);
+                    });
+
                 } else {
                     $query->whereHas('results', function ($query) use($page) {
                         $query->where('page', $page);

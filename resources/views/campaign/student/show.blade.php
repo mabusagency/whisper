@@ -71,7 +71,7 @@
         <div class="col-md-4">
 
 
-            @if(Auth::user()->type == 'staff')
+            @if(Auth::user()->type == 'admin' || Auth::user()->type == 'staff')
 
                 <div class="form-group form-check">
                     <div class="col-md-12">
