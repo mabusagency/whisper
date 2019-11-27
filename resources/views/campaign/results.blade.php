@@ -158,11 +158,7 @@
                                 <tr style="font-size:20px;">
                                     <td class="poll-value">{!! $poll['value'] !!}</td>
                                     <td class="text-right" style="color:#b7b7b7;font-weight:800;" num="{!! $poll['num'] !!}">
-                                        {!! $poll['num'] !!}
-                                        @if($completed > 0)
-                                            {!! $poll['num'] !!} ({!! round($poll['num']/$completed*100,0) !!}%)
-                                        @endif
-
+                                        {!! $poll['num'] !!} ({!! round($poll['num']/$students*100,0) !!}%)
                                     </td>
                                 </tr>
                                 @endforeach
