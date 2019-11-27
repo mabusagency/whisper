@@ -126,58 +126,60 @@
 {{--</div>--}}
 
 @foreach($fields as $field)
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1" style="margin-top:30px;">
-                <h3 class="panel-title" style="font-size:20px;font-weight:600;">{!! $field->name !!}</h3>
-                <div style="font-weight:800;">
-                    <div class="dropdown panel-title" style="font-size:14px;margin-top:10px;">
-                        Sort by
-                        <a class="dropdown-toggle" type="button" id="dropdownMenu{!! $field->id !!}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Highest to lowest
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#" class="sort" dir="desc" field="{!! $field->id !!}">Highest to lowest</a></li>
-                            <li><a href="#" class="sort" dir="asc" field="{!! $field->id !!}">Lowest to highest</a></li>
-                        </ul>
+    @if(count($polls[$field->tag]) > 0)
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1" style="margin-top:30px;">
+                        <h3 class="panel-title" style="font-size:20px;font-weight:600;">{!! $field->name !!}</h3>
+                        <div style="font-weight:800;">
+                            <div class="dropdown panel-title" style="font-size:14px;margin-top:10px;">
+                                Sort by
+                                <a class="dropdown-toggle" type="button" id="dropdownMenu{!! $field->id !!}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Highest to lowest
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="#" class="sort" dir="desc" field="{!! $field->id !!}">Highest to lowest</a></li>
+                                    <li><a href="#" class="sort" dir="asc" field="{!! $field->id !!}">Lowest to highest</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                @if(count($polls[$field->tag]) > 5) <div class="table-results" id="table-results-{!! $field->id !!}"> @endif
-                    <table class="table" id="{!! $field->id !!}">
-                        <tbody>
-                        @foreach($polls[$field->tag] as $poll)
-                        <tr style="font-size:20px;">
-                            <td class="poll-value">{!! $poll['value'] !!}</td>
-                            <td class="text-right" style="color:#b7b7b7;font-weight:800;" num="{!! $poll['num'] !!}">
-                                {!! $poll['num'] !!}
-                                @if($completed > 0)
-                                    {!! $poll['num'] !!} ({!! round($poll['num']/$completed*100,0) !!}%)
-                                @endif
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        @if(count($polls[$field->tag]) > 5) <div class="table-results" id="table-results-{!! $field->id !!}"> @endif
+                            <table class="table" id="{!! $field->id !!}">
+                                <tbody>
+                                @foreach($polls[$field->tag] as $poll)
+                                <tr style="font-size:20px;">
+                                    <td class="poll-value">{!! $poll['value'] !!}</td>
+                                    <td class="text-right" style="color:#b7b7b7;font-weight:800;" num="{!! $poll['num'] !!}">
+                                        {!! $poll['num'] !!}
+                                        @if($completed > 0)
+                                            {!! $poll['num'] !!} ({!! round($poll['num']/$completed*100,0) !!}%)
+                                        @endif
 
-                            </td>
-                        </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                    @if(count($polls[$field->tag]) > 5)
-                    <p class="show-more panel-title" field="{!! $field->id !!}" style="font-size:14px;"><a href="#" class="button">Show More</a></p>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            @if(count($polls[$field->tag]) > 5)
+                            <p class="show-more panel-title" field="{!! $field->id !!}" style="font-size:14px;"><a href="#" class="button">Show More</a></p>
+                        </div>
+                        @endif
+                    </div>
+                    {{--<div class="col-md-6">--}}
+                        {{--<div id="chart-{!! $field->tag !!}" style="height: 200px;"></div>--}}
+                    {{--</div>--}}
                 </div>
-                @endif
             </div>
-            {{--<div class="col-md-6">--}}
-                {{--<div id="chart-{!! $field->tag !!}" style="height: 200px;"></div>--}}
-            {{--</div>--}}
         </div>
-    </div>
-</div>
+    @endif
 @endforeach
 
 

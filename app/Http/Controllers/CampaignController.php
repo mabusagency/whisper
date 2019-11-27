@@ -251,7 +251,8 @@ class CampaignController extends Controller
             ->get();
 
         //$fields = Field::where('institution_id',session('institution')->id)->has('students')->get(); //breaks php 7.3
-        $fields = Field::where('institution_id',session('institution')->id)->get();
+        $do_not_include = ['id','firstName','lastName','email','purl'];
+        $fields = Field::where('institution_id',session('institution')->id)->whereNotIn('name',$do_not_include)->get();
 
         $polls = [];
         foreach($fields as $field) {
