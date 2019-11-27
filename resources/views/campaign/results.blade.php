@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <div class="number">{!! $visits/$students*100 !!}%</div>
+                <div class="number">{!! round($visits/$students*100,0) !!}%</div>
                 <p class="panel-title">{!! $visits !!} PURLs</p>
             </div>
         </div>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <div class="number">{!! $completed/$students*100 !!}%</div>
+                <div class="number">{!! round($completed/$students*100,0) !!}%</div>
                 <p class="panel-title">{!! $completed !!} PURLs</p>
             </div>
         </div>
