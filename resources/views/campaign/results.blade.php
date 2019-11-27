@@ -156,7 +156,14 @@
                         @foreach($polls[$field->tag] as $poll)
                         <tr style="font-size:20px;">
                             <td class="poll-value">{!! $poll['value'] !!}</td>
-                            <td class="text-right" style="color:#b7b7b7;font-weight:800;" num="{!! $poll['num'] !!}">{!! $poll['num'] !!} ({!! round($poll['num']/$completed*100,0) !!}%)</td>
+                            <td class="text-right" style="color:#b7b7b7;font-weight:800;" num="{!! $poll['num'] !!}">
+                                @if($completed == 0)
+                                    0 (0%)
+                                @else
+                                    {!! $poll['num'] !!} ({!! round($poll['num']/$completed*100,0) !!}%)
+                                @endif
+
+                            </td>
                         </tr>
                         @endforeach
                         </tbody>
