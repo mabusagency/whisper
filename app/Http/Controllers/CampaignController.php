@@ -204,13 +204,22 @@ class CampaignController extends Controller
 
     public function results()
     {
+        $students = Student::where('campaign_id', session('campaign')->id)->count();
+
+        $visits = Result::selectRaw('page, count(*) as num')
+            ->where('campaign_id',session('campaign')->id)
+            ->where('page','<>','link')
+            ->groupBy('page')
+            ->count();
+
+        $completed = Student::where('campaign_id', session('campaign')->id)->where('converted',1)->count();
+
         $visits_total = Result::selectRaw('page, count(*) as num')
             ->where('campaign_id',session('campaign')->id)
             ->where('page','<>','link')
             ->groupBy('page')
             ->onlyConverted()
             ->get();
-
 
         $visits_by_day = Result::selectRaw('page, DATE(created_at) as day, count(*) as num')
             ->where('campaign_id',session('campaign')->id)
@@ -241,20 +250,26 @@ class CampaignController extends Controller
             ->onlyConverted()
             ->get();
 
-        $fields = Field::where('institution_id',session('institution')->id)->has('students')->get();
+        //$fields = Field::where('institution_id',session('institution')->id)->has('students')->get(); //breaks php 7.3
+        $fields = Field::where('institution_id',session('institution')->id)->get();
+
         $polls = [];
         foreach($fields as $field) {
             //Get values
             $values = FieldStudent::selectRaw('value, count(*) as num')
                 ->where('field_id',$field->id)
+                ->where('value','<>','')
                 ->groupBy('value')
-                ->orderBy('value','asc')
+                ->orderBy('num','desc')
                 ->onlyConverted()
                 ->get();
             $polls[$field->tag] = $values->toArray();
         }
 
         return view('campaign/results')
+            ->with('students',$students)
+            ->with('visits',$visits)
+            ->with('completed',$completed)
             ->with('visits_total',$visits_total)
             ->with('page_visits_for_chart',$page_visits_for_chart)
             ->with('days_for_chart',$days_for_chart)

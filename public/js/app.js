@@ -758,7 +758,7 @@ $(function () {
 /* 9 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: \n  colo\n ^\n      Property \"colo\" must be followed by a ':'\n      in /Users/martythomas/Dropbox/Sites/whisper/resources/assets/sass/recruitu.scss (line 141, column 3)\n    at runLoaders (/Users/martythomas/Dropbox/Sites/whisper/node_modules/webpack/lib/NormalModule.js:192:19)\n    at /Users/martythomas/Dropbox/Sites/whisper/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /Users/martythomas/Dropbox/Sites/whisper/node_modules/loader-runner/lib/LoaderRunner.js:230:18\n    at context.callback (/Users/martythomas/Dropbox/Sites/whisper/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (/Users/martythomas/Dropbox/Sites/whisper/node_modules/sass-loader/lib/loader.js:57:13)\n    at Object.<anonymous> (/Users/martythomas/Dropbox/Sites/whisper/node_modules/sass-loader/node_modules/async/dist/async.js:2243:31)\n    at Object.callback (/Users/martythomas/Dropbox/Sites/whisper/node_modules/sass-loader/node_modules/async/dist/async.js:906:16)\n    at options.error (/Users/martythomas/Dropbox/Sites/whisper/node_modules/node-sass/lib/index.js:294:32)");
 
 /***/ }),
 /* 10 */

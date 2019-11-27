@@ -1,10 +1,8 @@
 <div class="campaign-back-link">
-    <i>
     <a href="/campaigns">
         <span class="glyphicon glyphicon glyphicon-circle-arrow-left"></span>
-        Go Back
+        Go back
     </a>
-    </i>
 </div>
 <h3>
     {!! session('campaign')->name !!}

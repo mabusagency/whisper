@@ -29,8 +29,8 @@ body {
   margin-bottom:30px;
 }
 .content-header h3 {
-  font-size:24px;
-  color:#333;
+  font-size:35px;
+  color:#263745;
 }
 
 ul.nav-content {
@@ -40,17 +40,25 @@ ul.nav-content {
 
 .nav-content li {
   display: inline-block;
-  margin-right: 14px;
+  padding:0 9px;
+  font-size: 16px;
+  font-weight:700;
 }
 
 .nav-content li a {
-  color: #636b6f;
+  color: #263745;
   text-decoration: none;
-  padding: 4px;
+}
+
+.nav-content li:not(:last-child) {
+  border-right:1px solid #263745;
+}
+.nav-content li:first-child {
+  padding-left:0;
 }
 
 .nav-content li a:hover, .nav-content li.active a {
-  border-bottom: 2px solid #3097D1;
+  color: #39bcac;
 }
 
 .navbar-inverse {
@@ -104,14 +112,17 @@ ul.nav-content {
   border-bottom: 1px solid #ddd;
   font-weight:500;
 }
+.table > tbody > tr:first-child > td {
+  border-top:0;
+}
 
 .campaign-back-link {
-  margin-bottom:-10px;
-  font-size:12px;
-  margin-top:20px;
+  margin:-10px 0 40px 0;
+  font-size:14px;
+  font-weight:600;
 }
 .campaign-back-link a {
-  color:#636b6f;
+  color:#bf3b49;
 }
 
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
@@ -120,6 +131,48 @@ ul.nav-content {
 }
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
   background-color: #652c3d;
+}
+
+.table-results {
+  max-height:300px;
+  overflow:hidden;
+  padding-bottom:60px;
+}
+.poll-value {
+  color: #bf3b49;
+  font-weight: 900;
+}
+.number {
+  color: #652c3d;
+  font-size:80px;
+  font-weight:900;
+}
+.page-title {
+  width: 100%;
+  border-bottom: 1px solid #b7b7b7;
+  line-height: 0.1em;
+  margin: 20px 0 30px;
+}
+.page-title span {
+  background: #f2f2f2;
+  padding:0 10px 0 0 ;
+  color: #b7b7b7;
+  font-size:16px;
+  font-weight:600;
+}
+
+.show-more {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 160px 0 30px 0;
+
+  /* "transparent" only works here because == rgba(0,0,0,0) */
+  background-image: linear-gradient(to bottom, transparent, white);
+  margin-bottom: -70px;
 }
 
 @media only screen and (max-width: 991px) {
