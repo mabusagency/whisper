@@ -258,9 +258,7 @@ class CampaignController extends Controller
         foreach($fields as $field) {
             //Get values
             $values = FieldStudent::selectRaw('value, count(*) as num')
-                ->join('students','students.id','=','field_student.student_id')
                 ->where('field_id',$field->id)
-                ->where('students.campaign_id',session('institution')->id)
                 ->where('value','<>','')
                 ->groupBy('value')
                 ->orderBy('num','desc')
