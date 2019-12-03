@@ -207,8 +207,7 @@ class CampaignController extends Controller
         $students = Student::where('campaign_id', session('campaign')->id)->count();
 
         $visits = Result::selectRaw('count(*) as num')
-            ->join('students','students.id','=','results.student_id')
-            ->where('students.campaign_id',session('campaign')->id)
+            ->where('campaign_id',session('campaign')->id)
             ->where('page','home')
             ->groupBy('student_id')
             ->count();
