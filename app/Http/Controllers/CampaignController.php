@@ -206,10 +206,10 @@ class CampaignController extends Controller
     {
         $students = Student::where('campaign_id', session('campaign')->id)->count();
 
-        $visits = Result::selectRaw('page, count(*) as num')
+        $visits = Result::selectRaw('count(*) as num')
             ->where('campaign_id',session('campaign')->id)
-            ->where('page','<>','link')
-            ->groupBy('page')
+            ->where('page','home')
+            ->groupBy('student_id')
             ->count();
 
         $completed = Student::where('campaign_id', session('campaign')->id)->where('converted',1)->count();
