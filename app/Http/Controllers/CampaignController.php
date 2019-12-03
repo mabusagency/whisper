@@ -263,6 +263,7 @@ class CampaignController extends Controller
                 ->where('field_id',$field->id)
                 ->where('students.campaign_id',session('campaign')->id)
                 ->where('value','<>','')
+                ->whereNull('deleted_at')
                 ->groupBy('value')
                 ->orderBy('num','desc')
                 ->onlyConverted()
