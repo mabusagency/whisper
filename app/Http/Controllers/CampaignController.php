@@ -256,15 +256,19 @@ class CampaignController extends Controller
 
         $polls = [];
         foreach($fields as $field) {
+
             //Get values
             $values = FieldStudent::selectRaw('value, count(*) as num')
+                ->join('students','students.id','=','field_student.student_id')
                 ->where('field_id',$field->id)
+                ->where('students.campaign_id',session('campaign')->id)
                 ->where('value','<>','')
                 ->groupBy('value')
                 ->orderBy('num','desc')
                 ->onlyConverted()
                 ->get();
             $polls[$field->tag] = $values->toArray();
+
         }
 
         return view('campaign/results')
