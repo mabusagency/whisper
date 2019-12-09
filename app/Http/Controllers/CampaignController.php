@@ -207,7 +207,9 @@ class CampaignController extends Controller
         $students = Student::where('campaign_id', session('campaign')->id)->count();
 
         $visits = Result::selectRaw('count(DISTINCT(CONCAT(student_id,page))) as num')
-            ->where('campaign_id',session('campaign')->id)
+            ->join('students','results.student_id','=','students.id')
+            ->whereNull('students.deleted_at')
+            ->where('results.campaign_id',session('campaign')->id)
             ->where('page','home')
             ->first();
         $visits = $visits->num;
@@ -215,17 +217,21 @@ class CampaignController extends Controller
         $completed = Student::where('campaign_id', session('campaign')->id)->where('converted',1)->count();
 
         $visits_total = Result::selectRaw('page, count(*) as num')
-            ->where('campaign_id',session('campaign')->id)
+            ->join('students','results.student_id','=','students.id')
+            ->whereNull('students.deleted_at')
+            ->where('results.campaign_id',session('campaign')->id)
             ->where('page','<>','link')
             ->groupBy('page')
             ->onlyConverted()
             ->get();
 
-        $visits_by_day = Result::selectRaw('page, DATE(created_at) as day, count(*) as num')
-            ->where('campaign_id',session('campaign')->id)
-            ->groupBy(\DB::raw('CONCAT(page,DATE(created_at))'))
+        $visits_by_day = Result::selectRaw('page, DATE(results.created_at) as day, count(*) as num')
+            ->join('students','results.student_id','=','students.id')
+            ->whereNull('students.deleted_at')
+            ->where('results.campaign_id',session('campaign')->id)
+            ->groupBy(\DB::raw('CONCAT(page,DATE(results.created_at))'))
             ->where('page','<>','link')
-            ->orderBy('id','asc')
+            ->orderBy('results.id','asc')
             ->onlyConverted()
             ->get();
 
@@ -244,7 +250,9 @@ class CampaignController extends Controller
         }
 
         $links = Result::selectRaw('url, count(*) as num')
-            ->where('campaign_id',session('campaign')->id)
+            ->join('students','results.student_id','=','students.id')
+            ->whereNull('students.deleted_at')
+            ->where('results.campaign_id',session('campaign')->id)
             ->where('page','link')
             ->groupBy('url')
             ->onlyConverted()
@@ -260,6 +268,7 @@ class CampaignController extends Controller
             //Get values
             $values = FieldStudent::selectRaw('value, count(*) as num')
                 ->join('students','students.id','=','field_student.student_id')
+                ->whereNull('students.deleted_at')
                 ->where('field_id',$field->id)
                 ->where('students.campaign_id',session('campaign')->id)
                 ->where('value','<>','')
