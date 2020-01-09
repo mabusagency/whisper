@@ -268,7 +268,7 @@ class CampaignController extends Controller
             //Get values
             $values = FieldStudent::selectRaw('value, count(*) as num')
                 ->whereNull('students.deleted_at')
-                ->where('field_id',1)
+                ->where('field_id',$field->id)
                 ->where('students.campaign_id',session('campaign')->id)
                 ->where('value','<>','')
                 ->whereNull('deleted_at')
