@@ -69,6 +69,10 @@ class Student extends Model
             $query->where('status','');
         }
 
+        if(\Request::input('recruits') == 'Y') {
+            $query->where('converted','1');
+        }
+
         if(\Request::input('deleted') == 'Y') {
             $query->withTrashed();
         }

@@ -256,10 +256,18 @@
 
                                 <div class="radio" style="margin-left:-20px;">
                                     <label>
+                                        <input type="checkbox" name="recruits" value="Y">
+                                        Show Recruits
+                                    </label>
+                                </div>
+
+                                <div class="radio" style="margin-left:-20px;">
+                                    <label>
                                         <input type="checkbox" name="deleted" value="Y">
                                         Show Deleted
                                     </label>
                                 </div>
+
                             </div>
                         </div>
 
