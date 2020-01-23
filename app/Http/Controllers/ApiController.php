@@ -139,6 +139,8 @@ class ApiController extends Controller
 
             if (!$value) continue;
 
+            $tag = strtolower($tag);
+
             if ($tag == 'purl_campaign'
                 || $tag == 'student_id'
             ) continue;
