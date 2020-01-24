@@ -26,6 +26,13 @@
             </div>
         </div>
 
+        <div class="form-group form-check">
+            <div class="col-md-6 col-md-offset-2">
+                <input type="checkbox" class="form-check-input" id="results" name="results" value="1">
+                &nbsp;<label class="form-check-label" for="results" >Show in Results</label>
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-6 col-md-offset-2">
                 <button type="submit" class="btn btn-warning">

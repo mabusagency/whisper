@@ -36,6 +36,7 @@ class FieldController extends AppController
         $field->institution_id = session('institution')->id;
         $field->name = $request['name'];
         $field->tag = strtoupper($request['tag']);
+        $field->results = $request['results'];
         $field->save();
 
         //Apply to every campaign
@@ -72,6 +73,7 @@ class FieldController extends AppController
 
         $field->name = $request['name'];
         $field->tag = strtoupper($request['tag']);
+        $field->results = $request['results'];
         $field->save();
 
         return redirect("/fields?message=Field+Created");
