@@ -146,7 +146,7 @@ class ApiController extends Controller
             ) continue;
 
             //Save to primary fields
-            if ($student->$tag) {
+            if (array_key_exists($tag,$student->getAttributes())) {
                 $student->$tag = $value;
             } //Save to custom fields
             elseif (in_array(strtoupper($tag), $tags)) {
