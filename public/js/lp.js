@@ -58,7 +58,7 @@ $(document).ready(function() {
             setCookie('student',JSON.stringify(visitor),30);
             setCookie('test',test);
             if(!visitor.firstName) nopurl(); //Call this optional function if no purl is found. Used to redirect to other page if no PURL.
-            if(visitor.converted && visitor.redirect_page) window.location = visitor.redirect_page;
+            if(visitor.converted && visitor.redirect_page && !url.includes(visitor.redirect_page)) window.location = visitor.redirect_page;
             personalizePage();
             if(test == 'Y') {
                 getOptions();
