@@ -234,7 +234,13 @@ class ApiController extends Controller
         }
 
         if(!$campaign = Campaign::find($campaign_id)) {
-            echo 'no options found';
+            echo 'no campaign found';
+            exit;
+        }
+        
+        $student = Student::where('campaign_id', $campaign_id)->first();
+        if ($student && array_key_exists($input_name,$student->getAttributes())) {
+            echo 'not adding options for standard field';
             exit;
         }
 
