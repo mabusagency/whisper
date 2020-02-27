@@ -239,7 +239,7 @@ class ApiController extends Controller
         }
         
         $student = Student::where('campaign_id', $campaign_id)->first();
-        if ($student && array_key_exists($input_name,$student->getAttributes())) {
+        if ($student && array_key_exists(strtolower($input_name),$student->getAttributes())) {
             echo 'not adding options for standard field';
             exit;
         }
