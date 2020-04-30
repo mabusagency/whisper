@@ -278,7 +278,48 @@ class CampaignController extends Controller
                 ->orderBy('num','desc')
                 ->onlyConverted()
                 ->get();
-            $polls[$field->tag] = $values->toArray();
+
+            //Check for Multi-Select Fields
+            $multiselect_values = [];
+            $field_values = $values->toArray();
+            if(count($field_values) > 0) {
+                foreach($field_values as $i => $field_value) {
+                    if(strstr($field_value['value'], '~')) {
+                        unset($field_values[$i]);
+                        $exp_values = explode('~',$field_value['value']);
+                        foreach($exp_values as $exp_value) {
+                            $exp_value = trim($exp_value);
+                            if(!isset($multiselect_values[$exp_value])) {
+                                $multiselect_values[$exp_value] = $field_value['num'];
+                            } else {
+                                $multiselect_values[$exp_value] = $multiselect_values[$exp_value] + $field_value['num'];
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            //If Multi-Select Fields exists, then bring into $field_values array
+            foreach($multiselect_values as $multiselect_value => $num) {
+                $match = false;
+                foreach($field_values as $i => $field_value) {
+                    if($field_value['value'] == $multiselect_value) {
+                        $match = true;
+                        $field_values[$i]['num'] = $field_values[$i]['num'] + $num;
+                        break;
+                    }
+                }
+                if(!$match) {
+                    array_push($field_values, [
+                        'value' => $multiselect_value,
+                        'num' => $num
+                    ]);
+                }
+            }
+            
+
+            $polls[$field->tag] = $field_values;
 
         }
 
