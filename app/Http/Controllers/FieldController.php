@@ -32,6 +32,8 @@ class FieldController extends AppController
             'tag' => 'required|string|max:10|unique:fields'
         ]);
 
+        if(!$request['results']) $request['results'] = 0;
+        
         $field = new Field();
         $field->institution_id = session('institution')->id;
         $field->name = $request['name'];
@@ -70,6 +72,8 @@ class FieldController extends AppController
             $mh = new MailChimpHelper($campaign);
             $mh->rename_merge_field($field->tag, $request);
         }
+
+        if(!$request['results']) $request['results'] = 0;
 
         $field->name = $request['name'];
         $field->tag = strtoupper($request['tag']);
