@@ -6,6 +6,7 @@ use App\Campaign;
 use App\Field;
 use App\Institution;
 use App\Student;
+use App\User;
 use DrewM\MailChimp\MailChimp;
 
 class MailChimpHelper
@@ -45,7 +46,7 @@ class MailChimpHelper
 
     private function get_merge_fields()
     {
-        $response = $this->mc->get('/lists/' . $this->list_id . '/merge-fields');
+        $response = $this->mc->get('/lists/' . $this->list_id . '/merge-fields?count=100');
 
         $fields = [];
         foreach ($response['merge_fields'] as $merge_fields) {
@@ -63,38 +64,55 @@ class MailChimpHelper
         $merge_fields = $this->get_merge_fields();
 
         //Check that PURL exists
-        if (!in_array('purl', $merge_fields)) {
-
+        if (!in_array('PURL', $merge_fields)) {
             $data = [
                 'tag' => 'PURL',
                 'name' => 'PURL',
                 'type' => 'text'
             ];
             $this->mc->post('/lists/' . $this->list_id . '/merge-fields', $data);
+        }
 
+        //Check that Recruiter exists
+        if (!in_array('RECRUITER', $merge_fields)) {
+            $data = [
+                'tag' => 'RECRUITER',
+                'name' => 'Recruiter',
+                'type' => 'text'
+            ];
+            $this->mc->post('/lists/' . $this->list_id . '/merge-fields', $data);
+        }
+
+        //Check that Recruiter Email exists
+        if (!in_array('RECR_EMAIL', $merge_fields)) {
+            $data = [
+                'tag' => 'RECR_EMAIL',
+                'name' => 'Recruiter Email',
+                'type' => 'text'
+            ];
+            $this->mc->post('/lists/' . $this->list_id . '/merge-fields', $data);
         }
 
         //Check that roles exist
-        foreach(config('app.roles') as $role) {
-            if (!in_array($role, $merge_fields)) {
-
-                $data = [
-                    'tag' => strtoupper(substr($role,0,10)),
-                    'name' => ucfirst($role),
-                    'type' => 'text'
-                ];
-                $this->mc->post('/lists/' . $this->list_id . '/merge-fields', $data);
-
-            }
-        }
-
+//        foreach(config('app.roles') as $role) {
+//            if (!in_array(strtoupper($role), $merge_fields)) {
+//                if($role == 'recruiter') {
+//                    $data = [
+//                        'tag' => strtoupper(substr($role,0,10)),
+//                        'name' => ucfirst($role),
+//                        'type' => 'text'
+//                    ];
+//                    $this->mc->post('/lists/' . $this->list_id . '/merge-fields', $data);
+//                }
+//            }
+//        }
 
         //Check that all standard field exist
         foreach ($sh->standard_field_names as $standard_field) {
 
             $tag = $sh->format_field_for_mailchimp_tag($standard_field);
 
-            if (!in_array($tag, $merge_fields)) {
+            if (!in_array(strtoupper($tag), $merge_fields)) {
                 $this->create_tag($standard_field, $tag);
             }
         }
@@ -195,13 +213,21 @@ class MailChimpHelper
                 $data[$merge_field] = $student->{$standard_field};
         }
 
-        //Roles
-        foreach(config('app.roles') as $role) {
-            if(isset($student->staff->where('role',$role)->first()->name)) {
-                $merge_field = $sh->format_field_for_mailchimp_tag($role);
-                $data[$merge_field] = $student->staff->where('role',$role)->first()->name;
-            }
+        //Recruiter
+        $recruiter = $student->staff->where('role','recruiter')->first();
+        $user = User::find($recruiter->user_id);
+        if($recruiter) {
+            $data['RECRUITER'] = $recruiter->name;
+            $data['RECR_EMAIL'] = $user->email;
         }
+        
+        //Roles
+//        foreach(config('app.roles') as $role) {
+//            if(isset($student->staff->where('role',$role)->first()->name)) {
+//                $merge_field = $sh->format_field_for_mailchimp_tag($role);
+//                $data[$merge_field] = $student->staff->where('role',$role)->first()->name;
+//            }
+//        }
 
         //Custom Fields
         $student_fields = $sh->get_student_custom_fields($student);
