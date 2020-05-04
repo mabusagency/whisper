@@ -32,8 +32,12 @@ class ApiController extends Controller
             exit;
         }
 
-        $student = Student::where(\DB::raw("CONCAT(purl1,purl2)"), $request['purl'])->first();
-        $campaign = Campaign::find($student->campaign_id);
+        if (!$campaign = Campaign::find($request['campaign'])) {
+            echo json_encode(['error' => 'no campaign found']);
+            exit;
+        }
+
+        $student = Student::where(\DB::raw("CONCAT(purl1,purl2)"), $request['purl'])->where('campaign_id',$campaign->id)->first();
 
         $response = [
             'id' => $student->id,
@@ -98,7 +102,7 @@ class ApiController extends Controller
 
         //Save Results
         $result = new Result();
-        $result->campaign_id = $student->campaign_id;
+        $result->campaign_id = $campaign->id;
         $result->student_id = $student->id;
         $result->ip = $this->get_visitor_ip($request);
         $result->url = $request['url'];
