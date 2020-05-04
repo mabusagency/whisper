@@ -10,6 +10,7 @@ use App\FieldStudent;
 use App\Option;
 use App\Staff;
 use App\StaffOptions;
+use App\StaffStudent;
 use App\Student;
 use App\Zipcodes;
 
@@ -66,7 +67,22 @@ class StudentHelper
                 $so = StaffOptions::where('institution_id',$student->institution_id)->where('option_id',$option->id)->first();
                 if($so) {
                     $staff = Staff::find($so->staff_id);
-                    $staff->students()->attach($student->id);
+
+                    //check to see if another staff with the same "role" has already been assigned
+                    $role = $staff->role;
+                    $role_exists = false;
+                    $sss = StaffStudent::where('student_id',$student->id)->get();
+                    foreach($sss as $ss) {
+                        $ss_staff = Staff::find($ss->staff_id);
+                        if($ss_staff->role == $role) {
+                            $role_exists = true;
+                        }
+                    }
+
+                    if(!$role_exists) {
+                        $staff->students()->attach($student->id);
+                    }
+
                 }
             }
         }
