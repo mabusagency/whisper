@@ -43,7 +43,7 @@ class StudentHelper
 
     public static function match_to_staff($student) {
 
-        $student->staff()->detach();
+        //$student->staff()->detach();
 
         $sf = self::get_student_custom_fields($student);
 
