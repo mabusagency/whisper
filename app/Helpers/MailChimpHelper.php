@@ -281,20 +281,7 @@ class MailChimpHelper
         if(!$student->mailchimp_member_id) return false;
 
         $response = $this->mc->get('/lists/' . $this->list_id . '/members/' . $student->mailchimp_member_id);
-
-        if($response['status'] == 400) {
-//            if($response['title'] == 'Member Exists') {
-//                $response = $this->update_student($student);
-//                $student->mailchimp_member_id = $response['id'];
-//                $student->save();
-//            } else {
-//                dd($response);
-//            }
-        } else {
-            $student->mailchimp_member_id = $response['id'];
-            $student->save();
-        }
-
+        
         return $response;
     }
 
