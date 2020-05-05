@@ -272,6 +272,32 @@ class MailChimpHelper
         return $response;
     }
 
+    public function get_student(Student $student)
+    {
+        if (!$this->list_id) {
+            $this->get_or_create_list();
+        }
+
+        if(!$student->mailchimp_member_id) return false;
+
+        $response = $this->mc->get('/lists/' . $this->list_id . '/members/' . $student->mailchimp_member_id);
+dd($response);
+        if($response['status'] == 400) {
+//            if($response['title'] == 'Member Exists') {
+//                $response = $this->update_student($student);
+//                $student->mailchimp_member_id = $response['id'];
+//                $student->save();
+//            } else {
+//                dd($response);
+//            }
+        } else {
+            $student->mailchimp_member_id = $response['id'];
+            $student->save();
+        }
+
+        return $response;
+    }
+
     public function update_student(Student $student, $original_email = null)
     {
         if($original_email) {

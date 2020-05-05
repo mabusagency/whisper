@@ -193,12 +193,18 @@ class StudentsController extends Controller
         return redirect("/campaign/students?message=Student+Created");
     }
 
-    public function show(Student $student)
+    public function show(Request $request, Student $student)
     {
         $sh = new StudentHelper();
 
         $fields = $sh->get_student_custom_fields($student);
         $institution = Institution::find(session('institution')->id);
+
+        if($request->input('show_mailchimp_data')) {
+            $mh = new MailChimpHelper(session('campaign'));
+            $mh->get_student($student);
+        }
+
         return view('campaign/student/show')
             ->withStudent($student)
             ->withFields($fields)
