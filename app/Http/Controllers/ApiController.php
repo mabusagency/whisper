@@ -130,6 +130,7 @@ class ApiController extends Controller
         $domain = $this->format_domain($_SERVER['HTTP_ORIGIN']);
         $student = Student::where('id', $request->student_id)->first();
         $campaign = Campaign::where('domain', $domain)->where('id', $student->campaign_id)->find($request->purl_campaign);
+        //$campaign = Campaign::where('id', $student->campaign_id)->find($request->purl_campaign);
 
         $original_email = $student->email; //for MailChimp
 
@@ -149,9 +150,9 @@ class ApiController extends Controller
                 || $tag == 'student_id'
             ) continue;
 
-            if ($tag == 'FNAME') $tag = 'firstName';
-            if ($tag == 'LNAME') $tag = 'lastName';
-            
+            if ($tag == 'fname') $tag = 'firstName';
+            if ($tag == 'lname') $tag = 'lastName';
+
             //Save to primary fields
             if (array_key_exists($tag,$student->getAttributes())) {
                 $student->$tag = $value;
