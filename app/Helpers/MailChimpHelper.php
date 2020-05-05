@@ -215,12 +215,13 @@ class MailChimpHelper
 
         //Recruiter
         $recruiter = $student->staff->where('role','recruiter')->first();
-        $user = User::find($recruiter->user_id);
         if($recruiter) {
+            $user = User::find($recruiter->user_id);
             $data['RECRUITER'] = $recruiter->name;
             $data['RECR_EMAIL'] = $user->email;
         }
-        
+
+
         //Roles
 //        foreach(config('app.roles') as $role) {
 //            if(isset($student->staff->where('role',$role)->first()->name)) {
