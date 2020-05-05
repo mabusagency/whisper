@@ -149,6 +149,9 @@ class ApiController extends Controller
                 || $tag == 'student_id'
             ) continue;
 
+            if ($tag == 'FNAME') $tag = 'firstName';
+            if ($tag == 'LNAME') $tag = 'lastName';
+            
             //Save to primary fields
             if (array_key_exists($tag,$student->getAttributes())) {
                 $student->$tag = $value;
