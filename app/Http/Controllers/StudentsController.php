@@ -202,8 +202,8 @@ class StudentsController extends Controller
 
         if($request->input('show_mailchimp_data')) {
             $mh = new MailChimpHelper(session('campaign'));
-            $studnet = $mh->get_student($student);
-            dd($student);
+            $mh_student = $mh->get_student($student);
+            dd($mh_student);
         }
 
         return view('campaign/student/show')
